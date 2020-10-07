@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>iPhone 11 Pro</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet">
+
+    <script>
+        //Functia de schimbare a culorii ce primeste ca parametru o anumita culoare (in cazul nostru: green, gold, silver, grey)
+        //In folderul assets gasim fotografiile produsului a caror denumire respecta formatul product_main_<color>.webp
+        function changeColor(color) {
+            var imageElement = document.getElementById('product-image');
+            imageElement.src = "assets/product_main_" + color + ".webp";
+            var titleElement = document.getElementById('product-color-in-title');
+            titleElement.innerText = capitalize(color);
+        }
+
+        //Capitalizarea unui string (transformarea primei litere in majuscula)
+        function capitalize(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        //Functia de actualizare a pretului
+        //Cautam dupa elementul cu id-ul 'pricetag' si setam continutul acestuia in functie de parametrul primit
+        function updatePrice(version){
+            updateVersionInTitle(version);
+            var priceTagElement = document.getElementById("pricetag");
+            if(version == 64)
+                priceTagElement.innerText = "4799 RON";
+            else if(version == 256)
+                priceTagElement.innerText = "5199 RON";
+            else if(version == 512)
+                priceTagElement.innerText = "5399 RON";
+        }
+
+        //Idem ca la actualizarea pretului
+        function updateVersionInTitle(version){
+            var versionTitleElement = document.getElementById("title-version");
+            versionTitleElement.innerText = version;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container center">
+        <div class="product-main">
+            <div class="product-image">
+                <img src="assets/product_main_green.webp" id="product-image" />
+            </div>
+            <div class="product-details">
+                <div class="product-title">
+                    <h3>iPhone 11 Pro Midnight
+                        <span id="product-color-in-title">
+                            Green
+                        </span> 
+                        <span id="title-version">64</span>
+                        GB</h3>
+                </div>
+
+                <div class="product-main-info">
+                    <div class="bottom-border">
+                        <p>
+                            Expanded field of view. iPhone 11 Pro lets you zoom from the Telephoto all the way out to
+                            the
+                            new Ultra Wide camera, for an impressive 4x optical zoom range.
+                        </p>
+                    </div>
+                    <div class="product-color">
+                        <span>Color</span>
+
+                        <div class="color-choose">
+                            <div>
+                                <input data-image="green" type="radio" id="green" name="color"
+                                    onchange="changeColor('green')" checked>
+                                <label for="green"><span></span></label>
+                            </div>
+                            <div>
+                                <input data-image="gold" type="radio" id="gold" name="color"
+                                    onchange="changeColor('gold')">
+                                <label for="gold"><span></span></label>
+                            </div>
+                            <div>
+                                <input data-image="silver" type="radio" id="silver" name="color"
+                                    onchange="changeColor('silver')">
+                                <label for="silver"><span></span></label>
+                            </div>
+                            <div>
+                                <input data-image="grey" type="radio" id="grey" name="color"
+                                    onchange="changeColor('grey')">
+                                <label for="grey"><span></span></label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="product-memsize bottom-border">
+
+                        <span>Device configuration</span>
+
+                        <div class="memsize-choose">
+                            <button onclick="updatePrice(64)">64 GB</button>
+                            <button onclick="updatePrice(256)">256 GB</button>
+                            <button onclick="updatePrice(512)">512 GB</button>
+                        </div>
+                    </div>
+
+                    <div class="product-price">
+                        <span id="pricetag">4799 RON</span>
+                        <a href="#" class="cart-btn">Add to cart</a>
+                      </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Phone type</td>
+                    <td>Smartphone</td>
+                </tr>
+                <tr>
+                    <td>Operating system</td>
+                    <td>iOS</td>
+                </tr>
+                <tr>
+                    <td>Cores</td>
+                    <td>6</td>
+                </tr>
+                 <tr>
+                    <td>CPU</td>
+                    <td>Apple A13 Bionic</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>
